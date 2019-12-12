@@ -8,16 +8,46 @@ import sys
 
 
 def eating_cookies(n, cache=None):
+    # new_cache = cache
+
+    # if n <= 1:
+    #     return 1
+    # if n == 2:
+    #     return 2
+    # if n == 3:
+    #     return 4
+    # if cache != None and n not in cache:
+    #     new_cache[n] = (eating_cookies(n-1, new_cache) +
+    #                     eating_cookies(n-2, new_cache) + eating_cookies(n-3, new_cache))
+    #     print(new_cache)
+    #     return new_cache[n]
+    # else:
+    #     return (eating_cookies(n-1) +
+    #             eating_cookies(n-2) + eating_cookies(n-3))
+
     if n <= 1:
         return 1
     if n == 2:
         return 2
     if n == 3:
         return 4
-    return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+
+    n_1 = 1
+    n_2 = 2
+    n_3 = 4
+
+    for _ in range(n-3):
+        cur = n_1 + n_2 + n_3
+        print(cur, n_1, n_2, n_3)
+
+        n_1 = n_2
+        n_2 = n_3
+        n_3 = cur
+
+    return cur
 
 
-# print(eating_cookies(10))
+print(eating_cookies(5))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
